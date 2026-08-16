@@ -30,8 +30,8 @@ with col1:
 with col2:
     Product_Allocated_Area = st.number_input("Allocated Area Ratio", min_value=0.0, max_value=1.0, value=0.05, format="%.4f")
     Product_Type = st.selectbox("Product Category", [
-        "Meat", "Snack Foods", "Hard Drinks", "Dairy", "Canned", "Soft Drinks", 
-        "Health and Hygiene", "Baking Goods", "Breads", "Breakfast", "Frozen Foods", 
+        "Meat", "Snack Foods", "Hard Drinks", "Dairy", "Canned", "Soft Drinks",
+        "Health and Hygiene", "Baking Goods", "Breads", "Breakfast", "Frozen Foods",
         "Fruits and Vegetables", "Household", "Seafood", "Starchy Foods", "Others"
     ])
 
@@ -60,17 +60,17 @@ input_data = pd.DataFrame([{
     'Store_Type': Store_Type
 }])
 
-# Note: If your model was trained on log-transformed variables or one-hot encoded columns, 
+# Note: If your model was trained on log-transformed variables or one-hot encoded columns,
 # you would apply those transformations here to input_data before calling model.predict().
 
 # --- Predict Button ---
 if st.button("Predict Sales"):
     # Perform prediction
     prediction = model.predict(input_data)[0]
-    
+
     # Handle log transformation if applied during training
     # if prediction was trained on log(sales), use: final_sales = np.expm1(prediction)
     final_sales = max(0, prediction) # Ensure we don't show negative sales
-    
+
     st.success(f"### Estimated Total Sales: {final_sales:,.2f} USD")
     st.info("This estimate is based on the historical patterns of product performance across similar store types.")
