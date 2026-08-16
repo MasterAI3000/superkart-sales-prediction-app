@@ -61,13 +61,13 @@ def predict_sales_batch():
     if 'Product_Id' in input_df.columns:
         ids = input_df['Product_Id'].tolist()
         # Drop ID if it wasn't used in model training
-        # input_df = input_df.drop('Product_Id', axis=1) 
+        # input_df = input_df.drop('Product_Id', axis=1)
     else:
         ids = input_df.index.tolist()
 
     # Make predictions for the batch data
     raw_predictions = model.predict(input_df).tolist()
-    
+
     # Format predictions to be non-negative and rounded
     formatted_predictions = [round(max(0, x), 2) for x in raw_predictions]
 
