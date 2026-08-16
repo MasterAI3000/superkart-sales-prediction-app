@@ -8,7 +8,7 @@ superkart_api = Flask("Superkart Sales Predictor")
 
 # Load the trained sales prediction model
 # Ensure the model file is in the same directory as this script
-model = joblib.load("superkart_sales_model_v1_0.joblib")
+model = joblib.load("superkart_sales_model_v2_0.joblib")
 
 # Define a route for the home page
 @superkart_api.get('/')
